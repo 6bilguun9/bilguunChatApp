@@ -11,7 +11,7 @@ const MessageFormSocial = dynamic(() =>
   import("react-chat-engine").then((module) => module.MessageFormSocial)
 );
 
-export default function chats() {
+const Chats = () => {
   const { username, secret } = useContext(Context);
   const [showChat, setShowChat] = useState(false);
   const router = useRouter();
@@ -20,11 +20,11 @@ export default function chats() {
     if (typeof document !== null) {
       setShowChat(true);
     }
-  });
+  }, []);
 
   useEffect(() => {
     if (username.length === 0 || secret.length === 0) router.push("/");
-  });
+  }, [username, secret, router]);
 
   if (!showChat) return <div />;
   return (
@@ -40,4 +40,6 @@ export default function chats() {
       </div>
     </div>
   );
-}
+};
+
+export default Chats;
